@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="manifest" href="manifest.json">
+<title>Radars GPS</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  * { margin:0; padding:0; box-sizing\:border-box; font-family: system-ui, sans-serif; }
+  html, body { height:100%; overflow\:hidden; }
+  #carte { position\:absolute; top:60px; bottom:90px; left:0; right:0; }
+  #haut { position\:absolute; top:0; left:0; right:0; height:60px; z-index:1000;
+          background:#1a1a2e; display\:flex; padding:10px; gap:8px; }
+  #destination { flex:1; border\:none; border-radius:8px; padding:0 12px; font-size:16px; }
+  #btnGo { background:#e94560; color:#fff; border\:none; border-radius:8px; padding:0 18px; font-weight\:bold; }
+  #bas { position\:absolute; bottom:0; left:0; right:0; height:90px; z-index:1000;
+         background:#1a1a2e; color:#fff; display\:flex; align-items\:center;
+         justify-content\:space-around; }
+  #vitesse { font-size:42px; font-weight\:bold; }
+  #vitesse small { font-size:14px; font-weight\:normal; display\:block; text-align\:center; }
+  #info { font-size:15px; max-width:55%; }
+  #alerte { display\:none; position\:absolute; top:70px; left:50%; transform\:translateX(-50%);
+            background:#c0392b; color:#fff; padding:12px 22px; border-radius:10px;
+            font-size:20px; font-weight\:bold; z-index:2000; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+  #btnRecadrer { position\:absolute; bottom:100px; right:12px; z-index:1000;
+                 width:44px; height:44px; border-radius:50%; border\:none;
+                 background:#fff; font-size:20px; box-shadow:0 2px 6px rgba(0,0,0,.3); }
+</style>
+</head>
+<body>
+<div id="haut">
+  <input id="destination" placeholder="Adresse de destination…">
+  <button id="btnGo">GO</button>
+</div>
+<div id="carte"></div>
+<div id="alerte">⚠️ ZONE DE DANGER</div>
+<button id="btnRecadrer" title="Centrer sur ma position">◎</button>
+<div id="bas">
+  <div id="vitesse">--<small>km/h</small></div>
+  <div id="info">Recherche du signal GPS…</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ---------- Carte ----------
+const carte = L.map('carte').setView([46.6, 2.4], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, attribution: '© OpenStreetMap'
+}).addTo

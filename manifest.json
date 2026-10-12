@@ -1,0 +1,14 @@
+{
+  "name": "Radars GPS",
+  "short_name": "Radars GPS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "icons": [{
+    "src": "icone.svg",
+    "sizes": "any",
+    "type": "image/svg+xml",
+    "purpose": "any"
+  }]
+}
