@@ -46,6 +46,6 @@
 <script>
 // ---------- Carte ----------
 const carte = L.map('carte').setView([46.6, 2.4], 6);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19, attribution: '© OpenStreetMap'
-}).addTo
+L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+  maxZoom: 18, attribution: '© OpenStreetMap'
+}).addTo(carte);
